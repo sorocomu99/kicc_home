@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    //implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
@@ -48,8 +48,8 @@ dependencies {
     implementation 'org.projectlombok:lombok:1.18.34'
     annotationProcessor 'org.projectlombok:lombok:1.18.34'
 
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.71'
-    implementation 'javax.servlet:jstl:1.2'
+    //implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:9.0.71'
+    //implementation 'javax.servlet:jstl:1.2'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:2.2.0'
