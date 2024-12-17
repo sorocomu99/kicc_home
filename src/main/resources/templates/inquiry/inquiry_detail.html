@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">전자금융 문의 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">회사명</th>
+                                                <td>KICC</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">담당자명</th>
+                                                <td>김담당</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">부서명</th>
+                                                <td>디지털기획부</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">연락처</th>
+                                                <td>01012341234</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">이메일</th>
+                                                <td>test@naver.com</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">문의 내용</th>
+                                                <td>출금이체(ex. 서비스 구독료, 월 이용료 등 자동이체)</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">등록시간</th>
+                                                <td>2024-11-11 14:06</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">확인 여부</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="check" id="check1-1" value="">
+                                                        <label class="form-check-label" for="check1-1">확인</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="check" id="check1-2" value="">
+                                                        <label class="form-check-label" for="check1-2">미확인</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">관리자 메모</th>
+                                                <td>
+                                                    <textarea class="form-control" id="adminMemo" rows="5"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" onclick="saveInquiry()" class="btn btn-primary">수정</button>
+                                        <a href="/inquiry/list" class="btn btn-outline-primary">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동하는 함수
+            function saveInquiry() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.check = $('input[name=check]:checked').val();
+                object.adminMemo = $('#adminMemo').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/terms/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+</body>
+</html>

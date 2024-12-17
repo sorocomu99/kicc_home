@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">주주총회 관리</h2>
+                            <form action="">
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">주주총회 제목</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input type="text" class="form-control" value="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">일자</th>
+                                                <th class="bg-light" width="60%">장소</th>
+                                                <th class="bg-light" width="20%">참석 주식수</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="10%">No</th>
+                                                <th class="bg-light" width="60%">의안</th>
+                                                <th class="bg-light" width="20%">결과</th>
+                                                <th class="bg-light" width="10%">관리</th>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                                <td>
+                                                    <input type="text" class="form-control" value="">
+                                                </td>
+                                                <td class="text-center">
+<!--                                                    <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeItem(this)">-->
+<!--                                                        <span data-feather="minus"></span>삭제-->
+<!--                                                    </button>-->
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="d-flex justify-content-end my-3">
+                                    <button type="button" class="btn btn-outline-dark btn-sm" onclick="addItem(this)">
+                                        <span data-feather="plus"></span>추가
+                                    </button>
+                                </div>
+                                <div class="button-container">
+                                    <button type="button" onclick="saveStockholder()" class="btn btn-primary">수정</button>
+                                    <a href="/stockholder/list" class="btn btn-outline-dark">목록</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 아이템 추가
+            function addItem(obj) {
+                var dom =
+                    '<tr>' +
+                    '   <td>' +
+                    '       <input type="text" class="form-control" value="">' +
+                    '   </td>' +
+                    '   <td>' +
+                    '       <input type="text" class="form-control" value="">' +
+                    '   </td>' +
+                    '   <td>' +
+                    '       <input type="text" class="form-control" value="">' +
+                    '   </td>' +
+                    '   <td class="text-center">' +
+                    '       <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeItem(this)">' +
+                    '           <span data-feather="minus"></span>삭제' +
+                    '       </button>' +
+                    '   </td>' +
+                    '</tr>';
+
+                const element = $(obj);
+                element.parent().prev().children().children().append(dom);
+                feather.replace();
+            }
+
+            // 아이템 삭제
+            function removeItem(obj) {
+                $(obj).parent().parent().remove();
+            }
+
+            // 등록 메소드로 이동하는 함수
+            function saveStockholder() {
+                // 객체에 해당 값 추가
+                /*object = new Object();
+                object.stockholder = $('#stockholder').val();
+
+                for(var i = 0; i < 30; i++) {
+                    window['about' + i] = $('input[name=about' + i + ']').val();
+                    object['about' + i] = window['account' + i];
+                }
+
+                console.log(object);*/
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/stockholder/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>KICC Admin</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard-dynamic-subset.css" />
+    <link href="../assets/css/bootstrap.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script src="../assets/component/header.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/jquery-3.6.4.min.js"></script>
+    <script src="../assets/js/feather.min.js"></script>
+    <script src="../assets/js/bootstrap-datepicker.min.js"></script>
+    <script src="../assets/js/bootstrap-clockpicker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.20/summernote-lite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script>
+    <script src="../assets/js/admin.js"></script>
+</head>
+
+<body>
+    <div class="wrap">
+        <app-header></app-header>
+    
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">브리징 - 활동내역 관리</h2>
+                            <div class="mt-4">
+                                <div class="top-search d-flex mt-4">
+                                    <div class="col">
+                                        <form action="">
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group">
+                                                    <select class="form-select" aria-label="">
+                                                        <option value="1" selected>제목</option>
+                                                      </select>
+                                                    <input type="text" class="form-control" placeholder="검색어를 입력해주세요." aria-label="">
+                                                    <button class="btn btn-dark">
+                                                        <span data-feather="search"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col">
+                                        <div class="button-wrap d-flex justify-content-end">
+                                            <a href="activity_insert.html" class="btn btn-primary">
+                                                <i data-feather="edit"></i> 신규 등록
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <table class="table text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:25%">이미지</th>
+                                            <th style="width:30%">제목 텍스트</th>
+                                            <th style="width:10%">노출여부</th>
+                                            <th style="width:10%">정렬</th>
+                                            <th style="width:20%">관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><img src="../assets/images/dummy/visual-slide-image-1.png" width="200" alt=""></td>
+                                            <td>제목 텍스트입니다.</td>
+                                            <td>노출</td>
+                                            <td>1</td>
+                                            <td>
+                                                <a href="activity_insert.html" class="btn btn-outline-dark btn-sm">수정</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td><img src="../assets/images/dummy/visual-slide-image-1.png" width="200" alt=""></td>
+                                            <td>제목 텍스트입니다.</td>
+                                            <td>미노출</td>
+                                            <td>2</td>
+                                            <td>
+                                                <a href="activity_insert.html" class="btn btn-outline-dark btn-sm">수정</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 페이지네이션 -->
+                            <nav class="bottom-pagination" aria-label="navigation">
+                                <ul class="pagination">
+                                    <!-- 
+                                        #클래스 가이드
+                                        1. 이전/다음 버튼 비활성화: li 태그에 "disabled" 클래스 추가
+                                        2. 활성화 상태: li태그에 "active" 클래스 및 "aria-current='page'" 추가
+                                     -->
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span data-feather="chevrons-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span data-feather="chevron-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span data-feather="chevron-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span data-feather="chevrons-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

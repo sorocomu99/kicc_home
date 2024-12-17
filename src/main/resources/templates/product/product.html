@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="">
+                            <div class="paper">
+                                <h2 class="h4">제품 소개 관리</h2>
+                                <div class="mt-4">
+                                    <h3 class="h5 mb-3">제품 첫번째 영역 관리</h3>
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품1 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productFile1">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품1 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productTitle1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품1 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="productText1" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">제품 두번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품2 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productFile2">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품2 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productTitle2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품2 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="productText2" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">제품 세번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품3 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productFile3">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품3 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productTitle3">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품3 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="productText3" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">제품 네번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품4 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productFile4">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품4 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productTitle4">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품4 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="productText4" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" onclick="saveProduct()" class="btn btn-primary">등록</button>
+<!--                                        <button type="button" onclick="saveProduct()" class="btn btn-primary">수정</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동하는 함수
+            function saveProduct() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.productFile1 = $('#productFile1').val();
+                object.productFile2 = $('#productFile2').val();
+                object.productFile3 = $('#productFile3').val();
+                object.productFile4 = $('#productFile4').val();
+                object.productTitle1 = $('#productTitle1').val();
+                object.productTitle2 = $('#productTitle2').val();
+                object.productTitle3 = $('#productTitle3').val();
+                object.productTitle4 = $('#productTitle4').val();
+                object.productText1 = $('#productText1').val();
+                object.productText2 = $('#productText2').val();
+                object.productText3 = $('#productText3').val();
+                object.productText4 = $('#productText4').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/product/update',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>

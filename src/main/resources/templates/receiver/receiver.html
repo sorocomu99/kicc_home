@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">문의 수신 담당자 설정</h2>
+                            <div class="mt-4">
+                                <form>
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">AS문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="asId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="asEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">인터넷사용처문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="internetId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="internetEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">단말기 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="danId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="danEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">이지포스 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="easyposId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="easyposEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">이지체크모바일 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="easycheckId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="easycheckEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">매출전표 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="sellId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="sellEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">신규문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="newId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="newEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">부가서비스 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="serviceId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="serviceEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">이지페이 문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="easypayId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="easypayEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">정보문의</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="infoId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="infoEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">전자금융</th>
+                                                <td>
+                                                    <div class="input-group" style="max-width:600px">
+                                                        <input type="text" id="moneyId" class="form-control" placeholder="">
+                                                        <span class="input-group-text">@</span>
+                                                        <input type="text" id="moneyEmail" class="form-control" placeholder="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" onclick="saveReceiver()" class="btn btn-primary">등록</button>
+<!--                                        <button type="button" onclick="saveReceiver()" class="btn btn-primary">수정</button>-->
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동하는 함수
+            function saveReceiver() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.asId = $('#asId').val();
+                object.asEmail = $('#asEmail').val();
+                object.internetId = $('#internetId').val();
+                object.internetEmail = $('#internetEmail').val();
+                object.danId = $('#danId').val();
+                object.danEmail = $('#danEmail').val();
+                object.easyposId = $('#easyposId').val();
+                object.easyposEmail = $('#easyposEmail').val();
+                object.easycheckId = $('#easycheckId').val();
+                object.easycheckEmail = $('#easycheckEmail').val();
+                object.sellId = $('#sellId').val();
+                object.sellEmail = $('#sellEmail').val();
+                object.newId = $('#newId').val();
+                object.newEmail = $('#newEmail').val();
+                object.serviceId = $('#serviceId').val();
+                object.serviceEmail = $('#serviceEmail').val();
+                object.easypayId = $('#easypayId').val();
+                object.easypayEmail = $('#easypayEmail').val();
+                object.infoId = $('#infoId').val();
+                object.infoEmail = $('#infoEmail').val();
+                object.moneyId = $('#moneyId').val();
+                object.moneyEmail = $('#moneyEmail').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/receiver/update',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+</body>
+</html>

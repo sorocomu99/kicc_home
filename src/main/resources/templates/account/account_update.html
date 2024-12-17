@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">관리자 계정 관리</h2>
+                            <div class="mt-4">
+                                <form>
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">아이디</th>
+                                                <td>
+                                                    <!-- <span>admin</span> -->
+                                                    <input type="text" class="form-control w-auto" id="accountId" value="">
+                                                </td>
+                                            </tr>
+                                            <tr></tr>
+                                                <th class="bg-light" width="20%">이름</th>
+                                                <td>
+                                                    <!-- <span>admin</span> -->
+                                                    <input type="text" class="form-control w-auto" id="accountName" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">비밀번호</th>
+                                                <td>
+                                                    <input type="password" class="form-control w-auto" id="accountPassword" onblur="checkPassword()">
+                                                    <p class="mt-2 mb-0">* 수정 희망시에만 입력하세요</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">비밀번호 확인</th>
+                                                <td>
+                                                    <!--
+                                                        유효성 체크:
+                                                        1. input: is-invalid 클래스 추가
+                                                        2. 텍스트: input 하단에 'invalid-feedback' 이름으로 div 안에 텍스트 추가
+                                                    -->
+                                                    <input type="password" class="form-control w-auto" id="accountPassword2" onblur="checkPassword2()">
+                                                    <div class="invalid-feedback"><i class="icon icon-danger"></i>패스워드가 일치하지 않습니다.</div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[관리자 계정 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access1" id="access1-1" value="">
+                                                        <label class="form-check-label" for="access1-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access1" id="access1-2" value="">
+                                                        <label class="form-check-label" for="access1-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[팝업 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access2" id="access2-1" value="">
+                                                        <label class="form-check-label" for="access2-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access2" id="access2-2" value="">
+                                                        <label class="form-check-label" for="access2-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[문의수신 담당자설정]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access3" id="access3-1" value="">
+                                                        <label class="form-check-label" for="access3-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access3" id="access3-2" value="">
+                                                        <label class="form-check-label" for="access3-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[개인정보처리 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access4" id="access4-1" value="">
+                                                        <label class="form-check-label" for="access4-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access4" id="access4-2" value="">
+                                                        <label class="form-check-label" for="access4-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[이용약관 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access5" id="access5-1" value="">
+                                                        <label class="form-check-label" for="access5-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access5" id="access5-2" value="">
+                                                        <label class="form-check-label" for="access5-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[전자금융 문의 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access6" id="access6-1" value="">
+                                                        <label class="form-check-label" for="access6-1">허용</label>
+                                                      </div>
+                                                      <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access6" id="access6-2" value="">
+                                                        <label class="form-check-label" for="access6-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[메인 비주얼 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access7" id="access7-1" value="">
+                                                        <label class="form-check-label" for="access7-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access7" id="access7-2" value="">
+                                                        <label class="form-check-label" for="access7-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[사업 영역 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access8" id="access8-1" value="">
+                                                        <label class="form-check-label" for="access8-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access8" id="access8-2" value="">
+                                                        <label class="form-check-label" for="access8-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[제품소개 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access9" id="access9-1" value="">
+                                                        <label class="form-check-label" for="access9-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access9" id="access9-2" value="">
+                                                        <label class="form-check-label" for="access9-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[POS 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access10" id="access10-1" value="">
+                                                        <label class="form-check-label" for="access10-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access10" id="access10-2" value="">
+                                                        <label class="form-check-label" for="access10-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[KIOSK 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access11" id="access11-1" value="">
+                                                        <label class="form-check-label" for="access11-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access11" id="access11-2" value="">
+                                                        <label class="form-check-label" for="access11-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[카드단말기 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access12" id="access12-1" value="">
+                                                        <label class="form-check-label" for="access12-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access12" id="access12-2" value="">
+                                                        <label class="form-check-label" for="access12-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[사인패드 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access13" id="access13-1" value="">
+                                                        <label class="form-check-label" for="access13-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access13" id="access13-2" value="">
+                                                        <label class="form-check-label" for="access13-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[기타 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access14" id="access14-1" value="">
+                                                        <label class="form-check-label" for="access14-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access14" id="access14-2" value="">
+                                                        <label class="form-check-label" for="access14-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[KICC 소개 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access15" id="access15-1" value="">
+                                                        <label class="form-check-label" for="access15-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access15" id="access15-2" value="">
+                                                        <label class="form-check-label" for="access15-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[주주총회 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access16" id="access16-1" value="">
+                                                        <label class="form-check-label" for="access16-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access16" id="access16-2" value="">
+                                                        <label class="form-check-label" for="access16-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[IR Letter 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access17" id="access17-1" value="">
+                                                        <label class="form-check-label" for="access17-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access17" id="access17-2" value="">
+                                                        <label class="form-check-label" for="access17-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[전자공고 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access18" id="access18-1" value="">
+                                                        <label class="form-check-label" for="access18-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access18" id="access18-2" value="">
+                                                        <label class="form-check-label" for="access18-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[브리징-소개 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access19" id="access19-1" value="">
+                                                        <label class="form-check-label" for="access19-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access19" id="access19-2" value="">
+                                                        <label class="form-check-label" for="access19-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[브리징-활동내역 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access20" id="access20-1" value="">
+                                                        <label class="form-check-label" for="access20-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access20" id="access20-2" value="">
+                                                        <label class="form-check-label" for="access20-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[소식 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access21" id="access21-1" value="">
+                                                        <label class="form-check-label" for="access21-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access21" id="access21-2" value="">
+                                                        <label class="form-check-label" for="access21-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[이력서 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access22" id="access22-1" value="">
+                                                        <label class="form-check-label" for="access22-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access22" id="access22-2" value="">
+                                                        <label class="form-check-label" for="access22-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[공지사항 관리(인재)]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access23" id="access23-1" value="">
+                                                        <label class="form-check-label" for="access23-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access23" id="access23-2" value="">
+                                                        <label class="form-check-label" for="access23-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[공지사항 관리(고객)]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access24" id="access24-1" value="">
+                                                        <label class="form-check-label" for="access24-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access24" id="access24-2" value="">
+                                                        <label class="form-check-label" for="access24-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[자료실 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access25" id="access25-1" value="">
+                                                        <label class="form-check-label" for="access25-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access25" id="access25-2" value="">
+                                                        <label class="form-check-label" for="access25-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[VOC문의 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access26" id="access26-1" value="">
+                                                        <label class="form-check-label" for="access26-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access26" id="access26-2" value="">
+                                                        <label class="form-check-label" for="access26-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[자주하는 질문 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access27" id="access27-1" value="">
+                                                        <label class="form-check-label" for="access27-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access27" id="access27-2" value="">
+                                                        <label class="form-check-label" for="access27-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[커리큘럼 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access28" id="access28-1" value="">
+                                                        <label class="form-check-label" for="access28-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access28" id="access28-2" value="">
+                                                        <label class="form-check-label" for="access28-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">접속권한[세미나 신청 관리]</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="access29" id="access29-1" value="option1">
+                                                        <label class="form-check-label" for="access29-1">허용</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="access29" id="access29-2" value="option2">
+                                                        <label class="form-check-label" for="access29-2">차단</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveAccount()">수정</button>
+                                        <a href="/account/list" class="btn btn-outline-primary">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <script>
+        $(document).ready(function () {
+            $('#invalid-feedback').hide();
+        });
+
+        // 비밀번호 재확인
+        function checkPassword() {
+            if($('#accountPassword').val() != $('#accountPassword2').val()) {
+                $('#accountPassword2').addClass('is-invalid');
+                $('#invalid-feedback').show();
+            }
+        }
+
+        // 비밀번호 재확인2
+        function checkPassword2() {
+            if($('#accountPassword').val() == $('#accountPassword2').val()) {
+                $('#accountPassword2').removeClass('is-invalid');
+                $('#invalid-feedback').hide();
+            }
+        }
+
+        // 수정 메소드로 이동하는 함수
+        function saveAccount() {
+            // 객체에 해당 값 추가
+            object = new Object();
+            object.account_id = $('#accountId').val();
+            object.account_name = $('#accountName').val();
+            object.account_password = $('#accountPassword').val();
+
+            for(var i = 0; i < 30; i++) {
+                window['account' + i] = $('input[name=access' + i + ']:checked').val();
+                object['account' + i] = window['account' + i];
+            }
+
+            console.log(object);
+
+            // AJAX 통신
+            // $.ajax({
+            //     url: '/account/update',
+            //     type: 'POST',
+            //     data: JSON.stringify(Object),
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         console.log(data);
+            //     },
+            //     error: function (err) {
+            //         console.log(err);
+            //     }
+            // });
+        }
+    </script>
+    </div>
+</body>
+</html>

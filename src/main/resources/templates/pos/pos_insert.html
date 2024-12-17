@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="">
+                            <div class="paper">
+                                <h2 class="h4">제품 관리</h2>
+                                <div class="mt-4">
+                                    <h3 class="h5 mb-3">이미지</h3>
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">썸네일 이미지</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="thumbnail1">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지1</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg1">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지2</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg2">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지3</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg3">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지4</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg4">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지5</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg5">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지6</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg6">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지7</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg7">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 상세 이미지8</th>
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="productImg8">
+                                                    </div>
+                                                    <p class="mb-0 mt-2 ms-3">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="bg-light" style="width:18%">제품 3D 링크</th>
+                                            <td>
+                                                <input class="form-control" type="text" id="threedlink">
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">제품 소개</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productTitle">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품명</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productName">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 소개 내용</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productText">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징1</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productPoint1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징2</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productPoint2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징3</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productPoint3">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징4</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productPoint4">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징5</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="productPoint5">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">메뉴얼 다운로드 파일</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="d-flex align-items-center">
+                                                            <input class="form-control w-auto" type="file" id="menualFile">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">리플릿 다운로드 파일</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="d-flex align-items-center">
+                                                            <input class="form-control w-auto" type="file" id="leafletFile">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">제품 특징</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">제품 특징 내용</th>
+                                                <td>
+                                                    <div id="summernote"></div>
+                                                    <textarea id="productContent" style="display: none"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <div class="top-search d-flex mt-4">
+                                    <div class="col">
+                                        <h3 class="h5 mb-3">제품 사양</h3>
+                                    </div>
+                                    <div class="col">
+                                        <div class="button-wrap d-flex justify-content-end">
+                                            <button class="btn btn-dark" type="button">추가</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <div class="tables">
+                                        <table class="table table-bordered align-middle mb-3">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="bg-light" style="width:18%">테이블 타이틀</th>
+                                                    <th class="bg-light" colspan="2">
+                                                        <input class="form-control" type="text" id="tableTitle">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="tableSubTitle">
+                                                    </td>
+                                                    <td>
+                                                        <input class="form-control" type="text" id="tableDescription">
+                                                    </td>
+                                                    <td class="text-center" style="width:15%">
+                                                        <button type="button" class="btn btn-outline-dark btn-sm">추가</button>
+                                                        <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="button-container">
+                                        <button type="button" onclick="savePos()" class="btn btn-primary">등록</button>
+                                        <a href="/pos/list" class="btn btn-outline-dark">목록</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동하는 함수
+            function savePos() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.thumbnail1 = $('#thumbnail1').val();
+                object.thumbnail2 = $('#thumbnail2').val();
+                object.thumbnail3 = $('#thumbnail3').val();
+                object.thumbnail4 = $('#thumbnail4').val();
+                object.thumbnail5 = $('#thumbnail5').val();
+
+                object.threedlink = $('#threedlink').val();
+
+                object.productTitle = $('#productTitle').val();
+                object.productName = $('#productName').val();
+                object.productText = $('#productText').val();
+
+                object.productPoint1 = $('#productPoint1').val();
+                object.productPoint2 = $('#productPoint2').val();
+                object.productPoint3 = $('#productPoint3').val();
+                object.productPoint4 = $('#productPoint4').val();
+                object.productPoint5 = $('#productPoint5').val();
+
+                object.menualFile = $('#menualFile').val();
+                object.leafletFile = $('#leafletFile').val();
+
+                // 썸머노트 값 textarea에 추가
+                var summernote_value = $("#summernote").summernote('code');
+                $("#productContent").val(summernote_value);
+
+                object.productContent = $('#productContent').val();
+
+                // 추후 추가/삭제에 따라 input 값 추출
+
+                object.tableTitle = $('#tableTitle').val();
+                object.visualText1 = $('#tableSubTitle').val();
+                object.visualText2 = $('#tableDescription').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/pos/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>

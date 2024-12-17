@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">이용약관 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">제목</th>
+                                                <td>
+                                                    <input type="text" id="termsTitle" class="form-control" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                    <textarea id="termsContent" style="display: none;"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" onclick="saveTerms()" class="btn btn-primary">수정</button>
+                                        <a href="/terms/list" class="btn btn-outline-primary">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <script>
+        // 등록 메소드로 이동하는 함수
+        function saveTerms() {
+            // 썸머노트 값 textarea에 추가
+            var summernote_value = $("#summernote").summernote('code');
+            $("#termsContent").val(summernote_value);
+
+            // 객체에 해당 값 추가
+            object = new Object();
+            object.termsTitle = $('#termsTitle').val();
+            object.termsContent = $('#termsContent').val();
+
+            console.log(object);
+
+            // AJAX 통신
+            // $.ajax({
+            //     url: '/terms/update',
+            //     type: 'POST',
+            //     data: JSON.stringify(Object),
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         console.log(data);
+            //     },
+            //     error: function (err) {
+            //         console.log(err);
+            //     }
+            // });
+        }
+    </script>
+    </div>
+</body>
+</html>

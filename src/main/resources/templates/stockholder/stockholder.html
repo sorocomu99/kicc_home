@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">주주총회 관리</h2>
+                            <div class="mt-4">
+                                <div class="top-search d-flex mt-4">
+                                    <div class="col"></div>
+                                    <div class="col">
+                                        <div class="button-wrap d-flex justify-content-end">
+                                            <a href="/stockholder/insert" class="btn btn-primary">
+                                                <i data-feather="edit"></i> 신규 등록
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <table class="table text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th style="">제목</th>
+                                            <th style="width:20%">관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 검색 결과 없을 때 -->
+                                        <!--<tr>
+                                            <td class="py-5" colspan="10">
+                                                검색 결과가 없습니다.
+                                            </td>
+                                        </tr>-->
+                                        <tr>
+                                            <td>제76기 정기 주주총회(2024)</td>
+                                            <td>
+                                                <a href="/stockholder/detail" class="btn btn-outline-dark btn-sm">수정</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

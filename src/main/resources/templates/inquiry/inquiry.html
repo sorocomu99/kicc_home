@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">전자금융 문의 관리</h2>
+                            <div class="mt-4">
+                                <div class="top-search d-flex mt-4">
+                                    <div class="col">
+                                        <form action="">
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group">
+                                                    <select class="form-select" aria-label="">
+                                                        <option value="">전체</option>
+                                                        <option value="">회사명</option>
+                                                        <option value="">담당자명</option>
+                                                      </select>
+                                                    <input type="text" class="form-control" placeholder="검색어를 입력해주세요." aria-label="">
+                                                    <button class="btn btn-dark">
+                                                        <span data-feather="search"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col">
+                                        <form action="">
+                                            <div class="d-flex align-items-center justify-content-end">
+                                                <span class="me-3">확인여부</span>
+                                                <div class="input-group" style="max-width:200px">
+                                                    <select class="form-select" aria-label="">
+                                                        <option value="1" selected>전체</option>
+                                                      </select>
+                                                    <button class="btn btn-dark">
+                                                        <span data-feather="search"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <table class="table text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:5%">No</th>
+                                            <th style="width:17%">회사명</th>
+                                            <th style="width:10%">담당자명</th>
+                                            <th style="">이메일</th>
+                                            <th style="width:15%">휴대폰번호</th>
+                                            <th style="width:8%">확인여부</th>
+                                            <th style="width:12%">등록시간</th>
+                                            <th style="width:15%">관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 검색 결과 없을 때 -->
+                                        <!--<tr>
+                                            <td class="py-5" colspan="10">
+                                                검색 결과가 없습니다.
+                                            </td>
+                                        </tr>-->
+                                        <tr>
+                                            <td>115</td>
+                                            <td>KICC</td>
+                                            <td>김담당</td>
+                                            <td>test@test.com</td>
+                                            <td>01012345678</td>
+                                            <td>확인</td>
+                                            <td>2024-12-01 10:00</td>
+                                            <td>
+                                                <a href="/inquiry/detail" class="btn btn-outline-dark btn-sm">확인</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

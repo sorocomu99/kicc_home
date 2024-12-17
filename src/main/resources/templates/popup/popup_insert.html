@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">팝업 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">시작일시</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="input-group w-auto flex-nowrap me-2 date" data-provide="datepicker">
+                                                            <input id="startDate" type="text" class="form-control w-auto" value="">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group clockpicker">
+                                                            <input id="startTime" type="text" class="form-control w-auto" value="">
+                                                            <span class="input-group-addon">
+                                                                <span data-feather="clock"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check mt-2 mb-0">
+                                                        <input id="check1" class="form-check-input" type="checkbox" value="" onclick="checkStart()">
+                                                        <label class="form-check-label" for="check1">시작일시를 오늘부터</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">종료일시</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="input-group w-auto flex-nowrap me-2 date" data-provide="datepicker">
+                                                            <input id="endDate" type="text" class="form-control w-auto" value="">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-group clockpicker">
+                                                            <input id="endTime" type="text" class="form-control w-auto" value="">
+                                                            <span class="input-group-addon">
+                                                                <span data-feather="clock"></span>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-check mt-2 mb-0">
+                                                        <input id="check2" class="form-check-input" type="checkbox" value="" onclick="checkEnd()">
+                                                        <label class="form-check-label" for="check2">종료일시를 오늘부터 7일 후 까지</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">팝업 위치</th>
+                                                <td>
+                                                    <div class="col-lg-6">
+                                                        <div class="input-group mb-2" style="width:275px">
+                                                            <span class="input-group-text">X</span>
+                                                            <input id="xPosition" type="text" class="form-control" value="">
+                                                            <span class="input-group-text">px</span>
+                                                        </div>
+                                                        <div class="input-group mb-2" style="width:275px">
+                                                            <span class="input-group-text">Y</span>
+                                                            <input id="yPosition" type="text" class="form-control" value="">
+                                                            <span class="input-group-text">px</span>
+                                                        </div>
+                                                    </div>
+                                                    <span>
+                                                        팝업이 표시될 위치를 입력해주세요. (기본 값 = X: 120px / Y: 120px)<br>
+                                                        ex) X: <span class="fw-bold text-danger">100</span> / Y: <span class="fw-bold text-danger">50</span> (화면 상단에서 <span class="fw-bold text-danger">100px</span>, 좌측에서 <span class="fw-bold text-danger">50px</span>)
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">팝업 제목</th>
+                                                <td>
+                                                    <input type="text" id="popupTitle" class="form-control" value="">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                    <textarea id="popupContent" style="display: none;"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="savePopup()">등록</button>
+                                        <a href="/popup/list" class="btn btn-outline-primary">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script>
+        // 시작/종료 일시 체크
+        let today = new Date();
+        let year = today.getFullYear(); // 년도
+        let month = today.getMonth() + 1;  // 월
+        let date = today.getDate();  // 날짜
+        let day = today.getDay();  // 요일
+
+        function pad(n){
+            if(n < 10){
+                return '0' + n;
+            }else{
+                return n;
+            }
+        }
+
+        // 오늘 날짜
+        function checkStart(){
+            if(event.target.checked){
+                startDate.value = year + '-' + pad(month) + '-' + pad(date);
+            }
+        }
+
+        // 종료 날짜
+        function checkEnd(){
+            let after = new Date(new Date().setDate(new Date().getDate() + 7));
+
+            endDate.value = after.getFullYear() + '-' + pad((after.getMonth() + 1)) + '-' + pad(after.getDate());
+        }
+
+        // 등록 메소드로 이동하는 함수
+        function savePopup() {
+            // 썸머노트 값 textarea에 추가
+            var summernote_value = $("#summernote").summernote('code');
+            $("#popupContent").val(summernote_value);
+
+            // 객체에 해당 값 추가
+            object = new Object();
+            object.startDate = $('#startDate').val();
+            object.startTime = $('#startTime').val();
+            object.endDate = $('#endDate').val();
+            object.endTime = $('#endTime').val();
+            object.xPosition = $('#xPosition').val();
+            object.yPosition = $('#yPosition').val();
+            object.popupTitle = $('#popupTitle').val();
+            object.popupContent = $('#popupContent').val();
+
+            console.log(object);
+
+            // AJAX 통신
+            // $.ajax({
+            //     url: '/popup/insert',
+            //     type: 'POST',
+            //     data: JSON.stringify(Object),
+            //     dataType: 'json',
+            //     success: function (data) {
+            //         console.log(data);
+            //     },
+            //     error: function (err) {
+            //         console.log(err);
+            //     }
+            // });
+        }
+    </script>
+</body>
+</html>

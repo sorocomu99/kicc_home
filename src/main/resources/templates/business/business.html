@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="">
+                            <div class="paper">
+                                <h2 class="h4">사업영역 관리</h2>
+                                <div class="mt-4">
+                                    <h3 class="h5 mb-3">사업영역 첫번째 영역 관리</h3>
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역1 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="businessFile1">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역1 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="businessTitle1">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역1 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="businessText1" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">사업영역 두번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역2 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="businessFile2">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역2 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="businessTitle2">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역2 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="businessText2" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">사업영역 세번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역3 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="businessFile3">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역3 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="businessTitle3">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역3 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="businessText3" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="paper mt-3">
+                                <h3 class="h5 mb-3">사업영역 네번째 영역 관리</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역4 이미지</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="businessFile4">
+                                                    </div>
+                                                    <p class="mb-0 mt-2">
+                                                        * 권장 사이즈 : 1920x000px
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역4 타이틀</th>
+                                                <td>
+                                                    <input class="form-control" type="text" id="businessTitle4">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">사업영역4 내용</th>
+                                                <td>
+                                                    <textarea class="form-control" id="businessText4" rows="2"></textarea>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary">등록</button>
+<!--                                        <button type="button" class="btn btn-primary">수정</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동하는 함수
+            function saveVisual() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.businessFile1 = $('#businessFile1').val();
+                object.businessFile2 = $('#businessFile2').val();
+                object.businessFile3 = $('#businessFile3').val();
+                object.businessFile4 = $('#businessFile4').val();
+                object.businessTitle1 = $('#businessTitle1').val();
+                object.businessTitle2 = $('#businessTitle2').val();
+                object.businessTitle3 = $('#businessTitle3').val();
+                object.businessTitle4 = $('#businessTitle4').val();
+                object.businessText1 = $('#businessText1').val();
+                object.businessText2 = $('#businessText2').val();
+                object.businessText3 = $('#businessText3').val();
+                object.businessText4 = $('#businessText4').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/business/update',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>

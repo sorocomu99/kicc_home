@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<main class="form-signin">
+    <form>
+        <div class="logo mb-4 mx-auto">
+            <img src="/images/logo.png" alt="">
+        </div>
+        <div class="form-floating">
+            <!--
+                유효성 체크:
+                1. input: is-invalid 클래스 추가
+                2. 텍스트: input 하단에 'invalid-feedback' 이름으로 div 안에 텍스트 추가
+            -->
+            <input type="text" class="form-control" id="floatingInput" placeholder="아이디">
+            <label for="floatingInput">아이디</label>
+            <!-- 유효성 체크 -->
+<!--            <div class="invalid-feedback"><i class="icon icon-danger"></i><i class="icon icon-danger"></i>아이디가 일치하지 않습니다.</div>-->
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="비밀번호">
+            <label for="floatingPassword">비밀번호</label>
+            <!-- 유효성 체크 -->
+<!--            <div class="invalid-feedback"><i class="icon icon-danger"></i>패스워드가 일치하지 않습니다.</div>-->
+        </div>
+        <button class="mt-4 w-100 btn btn-lg btn-primary" type="button" onclick="location.href='/account/list'">로그인</button>
+    </form>
+</main>
+
+<script src="/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+    <div class="wrap">
+        <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">관리자 계정 관리</h2>
+                            <div class="mt-4">
+                                <div class="col">
+                                </div>
+                                <div class="col">
+                                    <div class="top-search d-flex mt-4">
+                                        <div class="col">
+                                        </div>
+                                        <div class="col">
+                                            <div class="button-wrap d-flex justify-content-end">
+                                                <a href="/account/insert" class="btn btn-primary">
+                                                    <i data-feather="edit"></i> 신규 등록
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <table class="table text-center">
+                                    <thead>
+                                        <tr>
+                                            <th style="width:5%">No</th>
+                                            <th style="width:25%">아이디</th>
+                                            <th style="width:20%">관리자명</th>
+                                            <th style="width:20%">이메일</th>
+                                            <th style="width:20%">관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 검색 결과 없을 때 -->
+                                        <!--<tr>
+                                            <td class="py-5" colspan="10">
+                                                검색 결과가 없습니다.
+                                            </td>
+                                        </tr>-->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>ADMIN</td>
+                                            <td>최고관리자</td>
+                                            <td>admin@test.com</td>
+                                            <td>
+                                                <a href="/account/detail" class="btn btn-outline-dark btn-sm">수정</a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>ADMIN2</td>
+                                            <td>관리자2</td>
+                                            <td>test@test.com</td>
+                                            <td>
+                                                <a href="/account/detail" class="btn btn-outline-dark btn-sm">수정</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

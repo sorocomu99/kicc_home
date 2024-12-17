@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">KICC 소개 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tr>
+                                            <th class="bg-light" width="20%">연도</th>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <input type="text" class="form-control" value="" id="year">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <div class="kicc-about">
+                                        <table class="table table-bordered align-middle kiccAboutList">
+                                            <tbody>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="my-1"><input type="text" class="form-control w-auto" value="" placeholder="연/월을 입력해 주세요."></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="d-flex my-1 item">
+                                                                    <input type="text" class="form-control" value="" placeholder="내용 텍스트를 입력해 주세요.">
+                                                                    <button type="button" class="btn p-2" onclick="removeItem(this)">
+                                                                        <span data-feather="x-circle" class="m-0 lg"></span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col">
+                                                                <div class="d-flex justify-content-between">
+                                                                    <div class="my-3">
+                                                                        <button type="button" class="btn btn-outline-dark btn-sm" onclick="addItem(this)">내용 텍스트 추가</button>
+                                                                    </div>
+                                                                    <!--<div class="my-3">
+                                                                        <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeList(this)">
+                                                                            <span data-feather="trash-2"></span>항목 삭제
+                                                                        </button>
+                                                                    </div>-->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="d-flex justify-content-end">
+                                        <div class="my-3">
+                                            <button type="button" class="btn btn-outline-dark btn-sm" onclick="addList(this)">
+                                                <span data-feather="plus"></span>항목 추가
+                                            </button>
+                                        </div>
+                                    </div>                                    
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveAbout()">수정</button>
+                                        <a href="/about/list" class="btn btn-outline-dark">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            var mainIdx = 1;
+            var subIdx = 1;
+
+            $(function(){
+                $('#buttonAddList').click(addList);
+            });
+
+            // 항목 추가
+            function addList() {
+                const dom =
+                    '<table class="table table-bordered align-middle kiccAboutList">' +
+                    '   <tbody>' +
+                    '       <tr>' +
+                    '           <td colspan="2">' +
+                    '               <div class="row">' +
+                    '                   <div class="col">' +
+                    '                       <div class="my-1">' +
+                    '                           <input type="text" id="yearMonth' + mainIdx + '" class="form-control w-auto" value="" placeholder="연/월을 입력해 주세요.">' +
+                    '                       </div>' +
+                    '                   </div>' +
+                    '               </div>' +
+                    '               <div class="row">' +
+                    '                   <div class="col">' +
+                    '                       <div class="d-flex my-1 item">' +
+                    '                           <input type="text" class="form-control" value="" placeholder="내용 텍스트를 입력해 주세요.">' +
+                    '                           <button type="button" class="btn p-2" onclick="removeItem(this)">' +
+                    '                               <span data-feather="x-circle" class="m-0 lg"></span>' +
+                    '                           </button>' +
+                    '                       </div>' +
+                    '                   </div>' +
+                    '               </div>' +
+                    '               <div class="row">' +
+                    '                   <div class="col">' +
+                    '                       <div class="d-flex justify-content-between">' +
+                    '                           <div class="my-3">' +
+                    '                               <button type="button" class="btn btn-outline-dark btn-sm" onclick="addItem(this)">내용 텍스트 추가</button>' +
+                    '                           </div>' +
+                    '                           <div class="my-3">' +
+                    '                               <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeList(this)">' +
+                    '                                   <span data-feather="trash-2"></span>항목 삭제' +
+                    '                               </button>' +
+                    '                           </div>' +
+                    '                       </div>' +
+                    '                   </div>' +
+                    '               </div>' +
+                    '           </td>' +
+                    '       </tr>' +
+                    '   </tbody>' +
+                    '</table>';
+
+                $('.kicc-about').append(dom);
+                feather.replace();
+                mainIdx++;
+            }
+
+            // 항목 삭제
+            function removeList(e) {
+                const element = $(e);
+                mainIdx--;
+                element.closest('.kiccAboutList').remove();
+            }
+
+            // 보기 추가
+            function addItem(e) {
+                const element = $(e);
+                element.closest('.row').prev().find('.col').append(
+                    '<div class="d-flex my-1 item">' +
+                    '   <input type="text" class="form-control" value="" placeholder="내용 텍스트를 입력해 주세요.">' +
+                    '   <button type="button" class="btn p-2" onclick="removeItem(this)">' +
+                    '       <span data-feather="x-circle" class="m-0 lg"></span>' +
+                    '   </button>' +
+                    '</div>'
+                );
+                subIdx++;
+                e.dataset.idx = parseInt(e.dataset.idx) + 1;
+                feather.replace();
+            }
+
+            // 보기 삭제
+            function removeItem(e) {
+                subIdx--;
+                e.closest('.item').remove();
+            }
+
+            // 등록 메소드로 이동하는 함수
+            function saveAbout() {
+                // 객체에 해당 값 추가
+                /*object = new Object();
+                object.account_id = $('#accountId').val();
+                object.account_name = $('#accountName').val();
+                object.account_password = $('#accountPassword').val();
+
+                for(var i = 0; i < 30; i++) {
+                    window['account' + i] = $('input[name=access' + i + ']:checked').val();
+                    object['account' + i] = window['account' + i];
+                }
+
+                console.log(object);*/
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/about/update',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    <script src="/js/admin.js"></script>
+</body>
+</html>
