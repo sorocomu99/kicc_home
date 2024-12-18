@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">자료실 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">2차 카테고리</th>
+                                                <td>
+                                                    <input type="hidden" id="secondCategorySn"/>
+                                                    <select class="form-select w-auto" aria-label="" id="secondCategoryName">
+                                                        <option value="" selected disabled>선택</option>
+                                                        <option value="">1</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">게시 기간 시작 일시</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="input-group w-auto flex-nowrap me-2 date" data-provide="datepicker">
+                                                            <input id="startDate" type="text" class="form-control w-auto" th:value="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">게시 기간 마감 일시</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="input-group w-auto flex-nowrap me-2 date" data-provide="datepicker">
+                                                            <input id="endDate" type="text" class="form-control w-auto" th:value="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">제목</th>
+                                                <td>
+                                                    <input type="text" class="form-control" value="" id="downloadTitle">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                    <textarea id="downloadContent" style="display:none;"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">비밀번호</th>
+                                                <td>
+                                                    <input type="password" class="form-control" value="" id="downloadPassword">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">첨부파일</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="downloadFile">
+                                                        <div class="form-check form-check-inline mb-0 ms-2">
+                                                            <input class="form-check-input" type="checkbox" id="fileDelete" value="option1">
+                                                            <label class="form-check-label" for="fileDelete">삭제</label>
+                                                        </div>
+                                                    </div>
+                                                    <!-- <p class="mb-0 mt-2">
+                                                        업로드 가능한 파일: <span class="fw-bold">jpg, gif, png, hwp, pdf, pptx, ppt, xlsx, xls, xps, zip</span> / <span class="fw-bold text-danger">10MB 미만</span>
+                                                    </p> -->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">노출여부</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="expsr_yn" id="expsr_y" value="Y">
+                                                        <label class="form-check-label" for="expsr_y">노출</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="expsr_yn" id="expsr_n" value="N">
+                                                        <label class="form-check-label" for="expsr_n">미노출</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">정렬</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <input class="form-control" type="number" id="downloadSortNo" value="1" style="width:100px">
+                                                        <p class="mb-0 mt-2 ms-3">* 숫자가 낮을수록 상위 노출됩니다.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveDownload()">등록하기</button>
+                                        <a href="/download/list" class="btn btn-outline-dark">목록보기</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            function saveDownload() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.secondCategorySn = $('#secondCategorySn').val();
+                object.startDate = $('#startDate').val();
+                object.endDate = $('#endDate').val();
+                object.downloadTitle = $('#downloadTitle').val();
+
+                // 썸머노트 값 textarea에 추가
+                var summernote_value = $("#summernote").summernote('code');
+                $("#downloadContent").val(summernote_value);
+
+                object.downloadContent = $('#downloadContent').val();
+                object.downloadPassword = $('#downloadPassword').val();
+                object.downloadFile = $('#downloadFile').val();
+                object.expsr_yn = $('#expsr_yn').val();
+                object.downloadSortNo = $('#downloadSortNo').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/download/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>
