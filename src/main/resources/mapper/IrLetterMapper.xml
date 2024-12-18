@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kicc.home.dao.ir.IrDAO">
+
+    <resultMap id="IrLetterResultMap" type="com.kicc.home.ir.vo.IrLetter">
+        <id property="idx" column="IDX" />
+        <result property="writeDate" column="WRITE_DATE"/>
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <result property="updateUser" column="UPDATE_USER"/>
+        <result property="subject" column="SUBJECT" />
+        <result property="writer" column="WRITER" />
+        <result property="writeDate" column="WRITE_DATE" />
+        <result property="hits" column="HITS" />
+        <result property="filename" column="FILENAME" />
+        <result property="orgFilename" column="ORG_FILENAME" />
+        <result property="filesize" column="FILESIZE" />
+        <result property="contents" column="CONTENTS" />
+        <result property="hideYn" column="HIDE_YN" />
+        <result property="noticeYn" column="NOTICE_YN" />
+        <result property="activeYn" column="ACTIVE_YN" />
+        <result property="array" column="ARRAY" />
+    </resultMap>
+
+    <select id="findPagedIrLetters" resultMap="IrLetterResultMap">
+        SELECT *
+        FROM (
+            SELECT ROWNUM AS rnum, A.*
+            FROM (
+                SELECT *
+                FROM KICC.IR_LETTER
+                WHERE ACTIVE_YN = 'Y'
+                <if test="searchType != null and searchKeyword != null">
+                    <choose>
+                        <when test="searchType == 'subject'">
+                            AND SUBJECT LIKE '%' || #{searchKeyword} || '%'
+                        </when>
+                        <when test="searchType == 'contents'">
+                            AND CONTENTS LIKE '%' || #{searchKeyword} || '%'
+                        </when>
+                        <otherwise>
+                            AND (SUBJECT LIKE '%' || #{searchKeyword} || '%' OR CONTENTS LIKE '%' || #{searchKeyword} || '%')
+                        </otherwise>
+                    </choose>
+                </if>
+                ORDER BY ARRAY DESC, WRITE_DATE DESC
+            ) A
+            WHERE ROWNUM &lt;= #{offset} + #{limit}
+        )
+        WHERE rnum > #{offset}
+    </select>
+
+    <insert id="insertIrLetter">
+        INSERT INTO KICC.IR_LETTER (
+            IDX, SUBJECT, WRITER, WRITE_DATE,
+            HITS, FILENAME, ORG_FILENAME, FILESIZE,
+            CONTENTS, NOTICE_YN, ACTIVE_YN, ARRAY,UPDATE_DATE, UPDATE_USER
+        ) VALUES (
+            KICC.IR_LETTER_SEQ.NEXTVAL,
+            #{subject, jdbcType=VARCHAR},
+            #{writer, jdbcType=VARCHAR},
+            SYSDATE,
+            0,
+            #{filename, jdbcType=VARCHAR},
+            #{orgFilename, jdbcType=VARCHAR},
+            #{filesize, jdbcType=INTEGER},
+            #{contents, jdbcType=CLOB},
+            #{noticeYn, jdbcType=VARCHAR},
+            #{activeYn, jdbcType=VARCHAR},
+            #{array, jdbcType=INTEGER},
+            SYSDATE,
+            #{updateUser}
+        )
+    </insert>
+
+    <update id="updateIrLetter">
+        UPDATE KICC.IR_LETTER
+        SET SUBJECT = #{subject},
+            WRITER = #{writer},
+            FILENAME = #{filename},
+            ORG_FILENAME = #{orgFilename},
+            FILESIZE = #{filesize},
+            CONTENTS = #{contents},
+            NOTICE_YN = #{noticeYn},
+            ACTIVE_YN = #{activeYn},
+            ARRAY = #{array},
+            UPDATE_DATE = SYSDATE,
+            UPDATE_USER = #{updateUser}
+        WHERE IDX = #{idx}
+    </update>
+
+    <select id="findByIdx" resultMap="IrLetterResultMap">
+        SELECT *
+        FROM   KICC.IR_LETTER il
+        WHERE  IDX = #{idx}
+    </select>
+
+    <update id="deleteIrLetter">
+        UPDATE KICC.IR_LETTER
+        SET ACTIVE_YN = 'N'
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="updateHits">
+        UPDATE KICC.IR_LETTER
+        SET HITS = HITS + 1
+        WHERE IDX = #{idx}
+    </update>
+</mapper>

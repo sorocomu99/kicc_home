@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kicc.home.dao.account.AccountDAO">
+
+    <resultMap id="AccountResultMap" type="com.kicc.home.account.vo.Account">
+        <id property="idx" column="IDX"/>
+        <result property="id" column="ID"/>
+        <result property="password" column="PASSWORD"/>
+        <result property="name" column="NAME"/>
+        <result property="insertDate" column="INSERT_DATE"/>
+        <result property="updateDate" column="UPDATE_DATE"/>
+        <result property="updateUser" column="UPDATE_USER"/>
+        <result property="adminAccountYn" column="ADMIN_ACCOUNT_YN"/>
+        <result property="popupManageYn" column="POPUP_MANAGE_YN"/>
+        <result property="inquiryHandlerYn" column="INQUIRY_HANDLER_YN"/>
+        <result property="privacyProcessYn" column="PRIVACY_PROCESS_YN"/>
+        <result property="termsManageYn" column="TERMS_MANAGE_YN"/>
+        <result property="efinanceInquiryYn" column="EFINANCE_INQUIRY_YN"/>
+        <result property="mainVisualYn" column="MAIN_VISUAL_YN"/>
+        <result property="businessAreaYn" column="BUSINESS_AREA_YN"/>
+        <result property="productIntroYn" column="PRODUCT_INTRO_YN"/>
+        <result property="posManageYn" column="POS_MANAGE_YN"/>
+        <result property="kioskManageYn" column="KIOSK_MANAGE_YN"/>
+        <result property="cardTerminalYn" column="CARD_TERMINAL_YN"/>
+        <result property="signpadManageYn" column="SIGNPAD_MANAGE_YN"/>
+        <result property="etcManageYn" column="ETC_MANAGE_YN"/>
+        <result property="companyIntroYn" column="COMPANY_INTRO_YN"/>
+        <result property="shareholderMeetingYn" column="SHAREHOLDER_MEETING_YN"/>
+        <result property="irLetterYn" column="IR_LETTER_YN"/>
+        <result property="electronicNoticeYn" column="ELECTRONIC_NOTICE_YN"/>
+        <result property="bridgingIntroYn" column="BRIDGING_INTRO_YN"/>
+        <result property="bridgingActivityYn" column="BRIDGING_ACTIVITY_YN"/>
+        <result property="newsManageYn" column="NEWS_MANAGE_YN"/>
+        <result property="resumeManageYn" column="RESUME_MANAGE_YN"/>
+        <result property="noticeHrYn" column="NOTICE_HR_YN"/>
+        <result property="noticeCustomerYn" column="NOTICE_CUSTOMER_YN"/>
+        <result property="documentManageYn" column="DOCUMENT_MANAGE_YN"/>
+        <result property="vocInquiryYn" column="VOC_INQUIRY_YN"/>
+        <result property="faqManageYn" column="FAQ_MANAGE_YN"/>
+        <result property="curriculumManageYn" column="CURRICULUM_MANAGE_YN"/>
+        <result property="seminarApplyYn" column="SEMINAR_APPLY_YN"/>
+        <result property="loginFailCnt" column="LOGIN_FAIL_CNT"/>
+    </resultMap>
+
+    <select id="findById" resultMap="AccountResultMap">
+        SELECT *
+        FROM KICC.ACCOUNT
+        <where>
+            <choose>
+                <when test="id != null">
+                    ID = #{id}
+                </when>
+                <otherwise>
+                    IDX = #{idx}
+                </otherwise>
+            </choose>
+            AND ACTIVE_YN = 'Y'
+        </where>
+    </select>
+
+    <select id="selectList" resultMap="AccountResultMap">
+        SELECT *
+        FROM KICC.ACCOUNT
+        WHERE ACTIVE_YN = 'Y'
+        ORDER BY IDX DESC
+    </select>
+
+    <insert id="insertAccount" >
+            INSERT INTO KICC.ACCOUNT (
+            IDX, ID, PASSWORD, NAME, INSERT_DATE, UPDATE_DATE, UPDATE_USER,
+            ADMIN_ACCOUNT_YN, POPUP_MANAGE_YN, INQUIRY_HANDLER_YN, PRIVACY_PROCESS_YN, TERMS_MANAGE_YN,
+            EFINANCE_INQUIRY_YN, MAIN_VISUAL_YN, BUSINESS_AREA_YN, PRODUCT_INTRO_YN, POS_MANAGE_YN,
+            KIOSK_MANAGE_YN, CARD_TERMINAL_YN, SIGNPAD_MANAGE_YN, ETC_MANAGE_YN, COMPANY_INTRO_YN,
+            SHAREHOLDER_MEETING_YN, IR_LETTER_YN, ELECTRONIC_NOTICE_YN, BRIDGING_INTRO_YN,
+            BRIDGING_ACTIVITY_YN, NEWS_MANAGE_YN, RESUME_MANAGE_YN, NOTICE_HR_YN, NOTICE_CUSTOMER_YN,
+            DOCUMENT_MANAGE_YN, VOC_INQUIRY_YN, FAQ_MANAGE_YN, CURRICULUM_MANAGE_YN, SEMINAR_APPLY_YN,
+            LOGIN_FAIL_CNT
+        ) VALUES (
+            KICC.ACCOUNT_SEQ.NEXTVAL,
+            #{id},
+            #{password},
+            #{name},
+            SYSDATE,
+            SYSDATE,
+            #{updateUser},
+            #{adminAccountYn},
+            #{popupManageYn},
+            #{inquiryHandlerYn},
+            #{privacyProcessYn},
+            #{termsManageYn},
+            #{efinanceInquiryYn},
+            #{mainVisualYn},
+            #{businessAreaYn},
+            #{productIntroYn},
+            #{posManageYn},
+            #{kioskManageYn},
+            #{cardTerminalYn},
+            #{signpadManageYn},
+            #{etcManageYn},
+            #{companyIntroYn},
+            #{shareholderMeetingYn},
+            #{irLetterYn},
+            #{electronicNoticeYn},
+            #{bridgingIntroYn},
+            #{bridgingActivityYn},
+            #{newsManageYn},
+            #{resumeManageYn},
+            #{noticeHrYn},
+            #{noticeCustomerYn},
+            #{documentManageYn},
+            #{vocInquiryYn},
+            #{faqManageYn},
+            #{curriculumManageYn},
+            #{seminarApplyYn},
+            0
+            )
+    </insert>
+
+    <update id="updateAccount">
+        UPDATE KICC.ACCOUNT
+        SET
+            ID = #{id},
+            PASSWORD = #{password},
+            NAME = #{name},
+            UPDATE_DATE = SYSDATE,
+            UPDATE_USER = #{updateUser},
+            ADMIN_ACCOUNT_YN = #{adminAccountYn},
+            POPUP_MANAGE_YN = #{popupManageYn},
+            INQUIRY_HANDLER_YN = #{inquiryHandlerYn},
+            PRIVACY_PROCESS_YN = #{privacyProcessYn},
+            TERMS_MANAGE_YN = #{termsManageYn},
+            EFINANCE_INQUIRY_YN = #{efinanceInquiryYn},
+            MAIN_VISUAL_YN = #{mainVisualYn},
+            BUSINESS_AREA_YN = #{businessAreaYn},
+            PRODUCT_INTRO_YN = #{productIntroYn},
+            POS_MANAGE_YN = #{posManageYn},
+            KIOSK_MANAGE_YN = #{kioskManageYn},
+            CARD_TERMINAL_YN = #{cardTerminalYn},
+            SIGNPAD_MANAGE_YN = #{signpadManageYn},
+            ETC_MANAGE_YN = #{etcManageYn},
+            COMPANY_INTRO_YN = #{companyIntroYn},
+            SHAREHOLDER_MEETING_YN = #{shareholderMeetingYn},
+            IR_LETTER_YN = #{irLetterYn},
+            ELECTRONIC_NOTICE_YN = #{electronicNoticeYn},
+            BRIDGING_INTRO_YN = #{bridgingIntroYn},
+            BRIDGING_ACTIVITY_YN = #{bridgingActivityYn},
+            NEWS_MANAGE_YN = #{newsManageYn},
+            RESUME_MANAGE_YN = #{resumeManageYn},
+            NOTICE_HR_YN = #{noticeHrYn},
+            NOTICE_CUSTOMER_YN = #{noticeCustomerYn},
+            DOCUMENT_MANAGE_YN = #{documentManageYn},
+            VOC_INQUIRY_YN = #{vocInquiryYn},
+            FAQ_MANAGE_YN = #{faqManageYn},
+            CURRICULUM_MANAGE_YN = #{curriculumManageYn},
+            SEMINAR_APPLY_YN = #{seminarApplyYn},
+            LOGIN_FAIL_CNT = 0
+        WHERE IDX = #{idx}
+    </update>
+
+    <update id="updateLogin">
+        UPDATE KICC.ACCOUNT
+        SET
+            <choose>
+                <when test="success == true">
+                    LOGIN_FAIL_CNT = 0
+                </when>
+                <otherwise>
+                    LOGIN_FAIL_CNT = LOGIN_FAIL_CNT + 1
+                </otherwise>
+            </choose>
+        WHERE ID = #{id}
+    </update>
+
+    <update id="deleteAccount">
+        UPDATE KICC.ACCOUNT
+        SET ACTIVE_YN = 'N'
+        WHERE ID = #{id}
+    </update>
+
+</mapper>

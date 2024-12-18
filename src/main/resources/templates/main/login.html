@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <script>
+    async function login() {
+      const id = document.getElementById("id").value;
+      const password = document.getElementById("password").value;
+
+      const response = await fetch("/loginAction", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, password })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem("token", data.token);
+        alert("Login Successful! Redirecting to main page...");
+        window.location.href = "/main";
+      } else {
+        alert("Invalid credentials");
+      }
+    }
+
+    async function accessSecured() {
+      const token = localStorage.getItem("token");
+      const response = await fetch("/secured", {
+        method: "GET",
+        headers: { "Authorization": "Bearer " + token }
+      });
+
+      const message = await response.text();
+      alert(message);
+    }
+  </script>
+</head>
+<body>
+<h2>Login</h2>
+<form onsubmit="event.preventDefault(); login();">
+  <label for="id">Username:</label>
+  <input type="text" id="id" name="id" required><br><br>
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required><br><br>
+  <button type="submit">Login</button>
+</form>
+
+<h3>Access Secured Endpoint</h3>
+<button onclick="accessSecured()">Access</button>
+</body>
+</html>
