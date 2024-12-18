@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">자주하는 질문 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">카테고리</th>
+                                                <td>
+                                                    <input type="hidden" id="faqCategory"/>
+                                                    카테고리1
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">질문 텍스트</th>
+                                                <td>
+                                                    <textarea class="form-control" id="faqQuestion" rows="5"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">답변 텍스트</th>
+                                                <td>
+                                                    <textarea class="form-control" id="faqAnswer" rows="5"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">키워드</th>
+                                                <td>
+                                                    <input type="text" class="form-control" value="" id="faqKeyword">
+                                                    <p class="mt-1">콤마로 구분</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">노출여부</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="expsr_yn" id="expsr_y" value="Y">
+                                                        <label class="form-check-label" for="expsr_y">노출</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="expsr_yn" id="expsr_n" value="N">
+                                                        <label class="form-check-label" for="expsr_n">미노출</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">정렬</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <input class="form-control" type="number" id="faqSortNo" value="1" style="width:100px">
+                                                        <p class="mb-0 mt-2 ms-3">* 숫자가 낮을수록 상위 노출됩니다.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveFaq()">등록</button>
+                                        <a href="/faq/list" class="btn btn-outline-dark">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            function saveFaq() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.faqCategory = $('#faqCategory').val();
+                object.faqQuestion = $('#faqQuestion').val();
+                object.faqAnswer = $('#faqAnswer').val();
+                object.faqKeyword = $('#faqKeyword').val();
+                object.expsr_yn = $('input[name=expsr_yn]').val();
+
+                if($('#faqSortNo').val() == null || $('#faqSortNo').val() == "") {
+                    $('#faqSortNo').val(1);
+                }
+
+                object.faqSortNo = $('#faqSortNo').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/faq/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>
