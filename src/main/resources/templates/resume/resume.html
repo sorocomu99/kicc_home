@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">이력서 관리</h2>
+                            <div class="mt-4">
+                                <div class="top-search d-flex mt-4">
+                                    <div class="col">
+                                        <form action="">
+                                            <div class="d-flex align-items-center">
+                                                <div class="input-group">
+                                                    <select class="form-select" aria-label="">
+                                                        <option value="">전체</option>
+                                                        <option value="">이름</option>
+                                                        <option value="">이메일</option>
+                                                        <option value="">핸드폰 번호</option>
+                                                    </select>
+                                                    <input type="text" class="form-control" placeholder="검색어를 입력해주세요." aria-label="">
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div class="col">
+                                                        <div class="d-flex align-items-center ms-3">
+                                                            <span class="me-2" style="flex-shrink: 0;">채용공고: </span>
+                                                            <select class="form-select" aria-label="">
+                                                                <option value="">- 채용 공고 -</option>
+                                                                <option value="">채용공고1</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="d-flex align-items-center ms-3">
+                                                            <span class="me-2" style="flex-shrink: 0;">처리상태 : </span>
+                                                            <select class="form-select" aria-label="">
+                                                                <option value="">- 채용 상태 -</option>
+                                                                <option value="">접수</option>
+                                                                <option value="">서류합격</option>
+                                                                <option value="">1차합격</option>
+                                                                <option value="">2차합격</option>
+                                                                <option value="">최종합격</option>
+                                                                <option value="">불합격</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex align-items-center mt-3">
+                                                <span class="me-2" style="flex-shrink: 0;">지원일: </span>
+                                                <div class="d-flex align-items-center me-3">
+                                                    <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
+                                                        <input id="startDate" type="text" class="form-control w-auto" th:value="${#calendars.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                                                        <div class="input-group-addon">
+                                                            <span data-feather="calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                    <span class="mx-2">~</span>
+                                                    <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
+                                                        <input id="endDate" type="text" class="form-control w-auto">
+                                                        <div class="input-group-addon">
+                                                            <span data-feather="calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <button class="btn btn-dark">
+                                                    <span data-feather="search"></span>
+                                                    검색
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-outline-dark me-1" onclick="choiceMail()">
+                                    선택 메일 발송
+                                </button>
+                                <button class="btn btn-outline-dark me-1" onclick="choiceSMS()">
+                                    선택 SMS 발송
+                                </button>
+                                <button class="btn btn-outline-success">
+                                    <svg class="feather lg me-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><title>file-excel-outline</title><path d="M14 2H6C4.89 2 4 2.9 4 4V20C4 21.11 4.89 22 6 22H18C19.11 22 20 21.11 20 20V8L14 2M18 20H6V4H13V9H18V20M12.9 14.5L15.8 19H14L12 15.6L10 19H8.2L11.1 14.5L8.2 10H10L12 13.4L14 10H15.8L12.9 14.5Z" /></svg>
+                                    선택 Excel 다운로드
+                                </button>
+                            </div>
+                            <div class="mt-2">
+                                <table class="table text-center align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th class="align-middle" style="width:5%">No</th>
+                                            <th class="align-middle">
+                                                <input class="form-check-input me-2" type="checkbox" onchange="allCheck(this)">
+                                            </th>
+                                            <th class="align-middle" style="width:10%">지원공고</th>
+                                            <th class="align-middle" style="width:10%">지원분야</th>
+                                            <th class="align-middle" style="width:7%">이름</th>
+                                            <th class="align-middle" style="width:5%">성별</th>
+                                            <th class="align-middle" style="">생년월일</th>
+                                            <th class="align-middle" style="width:10%">이메일</th>
+                                            <th class="align-middle" style="width:10%">핸드폰번호</th>
+                                            <th class="align-middle" style="">지원일</th>
+                                            <th class="align-middle" style="width:10%">지원상태</th>
+                                            <th class="align-middle" style="width:11%">처리상태</th>
+                                            <th class="align-middle" style="width:11%">관리</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- 검색 결과 없을 때 -->
+                                        <!--<tr>
+                                            <td class="py-5" colspan="12">
+                                                검색 결과가 없습니다.
+                                            </td>
+                                        </tr>-->
+                                        <!-- 리스팅 -->
+                                        <tr>
+                                            <td>1</td>
+                                            <td>
+                                                <input class="form-check-input me-2" type="checkbox" onchange="checkAdd(this)">
+                                                <input type="hidden" value="1"/>
+                                            </td>
+                                            <td>2024년 신입사원 채용</td>
+                                            <td>법인영업본부</td>
+                                            <td>김서로</td>
+                                            <td>남자</td>
+                                            <td>1996.06.01</td>
+                                            <td>kicc2@kicc.com</td>
+                                            <td>010-4567-8970</td>
+                                            <td>2024.02.08</td>
+                                            <td>Y</td>
+                                            <td>
+                                                <select class="form-select" aria-label="" id="resumeType">
+                                                    <option value="">접수</option>
+                                                    <option value="">서류합격</option>
+                                                    <option value="">1차합격</option>
+                                                    <option value="">2차합격</option>
+                                                    <option value="">최종합격</option>
+                                                    <option value="">불합격</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a href="/resume/detail" class="btn btn-outline-dark btn-sm">확인</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>
+                                                <input class="form-check-input me-2" type="checkbox" onchange="checkAdd(this)">
+                                                <input type="hidden" value="2"/>
+                                            </td>
+                                            <td>2024년 신입사원 채용</td>
+                                            <td>법인영업본부</td>
+                                            <td>김서로</td>
+                                            <td>남자</td>
+                                            <td>1996.06.01</td>
+                                            <td>kicc2@kicc.com</td>
+                                            <td>010-4567-8970</td>
+                                            <td>2024.02.08</td>
+                                            <td>Y</td>
+                                            <td>
+                                                <select class="form-select" aria-label="" id="resumeType2">
+                                                    <option value="">접수</option>
+                                                    <option value="">서류합격</option>
+                                                    <option value="">1차합격</option>
+                                                    <option value="">2차합격</option>
+                                                    <option value="">최종합격</option>
+                                                    <option value="">불합격</option>
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <a href="/resume/detail" class="btn btn-outline-dark btn-sm">확인</a>
+                                                <button type="button" class="btn btn-outline-danger btn-sm">삭제</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-outline-dark" onclick="updateAll()">
+                                    <span data-feather="check-square"></span>
+                                    일괄수정
+                                </button>
+                            </div>
+
+                            <!-- 페이지네이션 -->
+                            <nav class="bottom-pagination" aria-label="navigation">
+                                <ul class="pagination">
+                                    <!-- 
+                                        #클래스 가이드
+                                        1. 이전/다음 버튼 비활성화: li 태그에 "disabled" 클래스 추가
+                                        2. 활성화 상태: li태그에 "active" 클래스 및 "aria-current='page'" 추가
+                                     -->
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span data-feather="chevrons-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span data-feather="chevron-left" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item active" aria-current="page"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span data-feather="chevron-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span data-feather="chevrons-right" aria-hidden="true"></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                // 월 계산
+                function pad(n){
+                    if(n < 10){
+                        return '0' + n;
+                    }else{
+                        return n;
+                    }
+                }
+
+                // 종료 날짜
+                $(document).ready(function() {
+                    let after = new Date(new Date().setDate(new Date().getDate() + 30));
+                    $('#endDate').val(after.getFullYear() + '-' + pad((after.getMonth() + 1)) + '-' + pad(after.getDate()));
+                });
+
+                // 셀렉트 박스 이벤트
+                let checkSnList = [];
+                const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                // 체크 할 시 배열에 담기
+                function checkAdd(obj){
+                    // 체크 여부
+                    const checked = obj.checked;
+                    // 체크가 되어있다면
+                    if(checked){
+                        checkSnList.push(obj.nextElementSibling.value);
+                    } else {
+                        checkSnList = checkSnList.filter((item) => item !== obj.nextElementSibling.value);
+                    }
+                }
+
+                // 만약 하나를 선택하면 전체 선택
+                function allCheck(resumeNo){
+                    // 체크 여부
+                    if(resumeNo.checked){
+                        checkSnList = [];
+                    }
+
+                    // 체크 박스 길이만큼 반복
+                    for(let i = 0; i < checkboxes.length; i++){
+                        checkboxes[i].checked = resumeNo.checked;
+
+                        // 전체 선택 시 배열에 추가
+                        if (resumeNo.checked && checkboxes[i].nextElementSibling != null) {
+                            let value = checkboxes[i].nextElementSibling.value;
+                            if (!checkSnList.includes(value)) {
+                                checkSnList.push(value);
+                            }
+                        } else {
+                            checkSnList = [];
+                        }
+                    }
+                }
+
+                // 선택 메일 발송
+                function choiceMail(){
+                    // 체크 박스를 선택했는 지 확인
+                    if(checkSnList.length === 0){
+                        alert("이메일을 보낼 대상을 체크 해 주세요.");
+                        return;
+                    }
+
+                    var form = document.createElement('form');
+                    for(var i = 0; i < checkSnList.length; i++){
+                        var hiddenField = document.createElement('input');
+                        hiddenField.setAttribute('type', 'hidden');
+                        hiddenField.setAttribute('name', 'resume[]');
+                        hiddenField.setAttribute('value', checkSnList[i]);
+                        form.appendChild(hiddenField);
+                    }
+                    form.setAttribute('method', 'post');
+                    form.setAttribute('action', '/resume/mail/page');
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+
+                // 선택 SMS 발송
+                function choiceSMS(){
+                    // 체크 박스를 선택했는 지 확인
+                    if(checkSnList.length === 0){
+                        alert("이메일을 보낼 대상을 체크 해 주세요.");
+                        return;
+                    }
+
+                    var form = document.createElement('form');
+                    for(var i = 0; i < checkSnList.length; i++){
+                        var hiddenField = document.createElement('input');
+                        hiddenField.setAttribute('type', 'hidden');
+                        hiddenField.setAttribute('name', 'resume[]');
+                        hiddenField.setAttribute('value', checkSnList[i]);
+                        form.appendChild(hiddenField);
+                    }
+                    form.setAttribute('method', 'post');
+                    form.setAttribute('action', '/resume/sms/page');
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+
+                // 일괄 수정
+                function updateAll(){
+                    // 객체에 해당 값 추가
+                    object = new Object();
+                    object.resumeType = $('#resumeType').val();
+
+                    console.log(object);
+
+                    // AJAX 통신
+                    // $.ajax({
+                    //     url: '/resume/update',
+                    //     type: 'POST',
+                    //     data: JSON.stringify(Object),
+                    //     dataType: 'json',
+                    //     success: function (data) {
+                    //         console.log(data);
+                    //     },
+                    //     error: function (err) {
+                    //         console.log(err);
+                    //     }
+                    // });
+                }
+            </script>
+        </main>
+    </div>
+</body>
+</html>

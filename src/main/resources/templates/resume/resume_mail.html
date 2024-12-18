@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">선택 메일 발송</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">담당자</th>
+                                                <td>
+                                                    <span>최고관리자(test.kicc.co.kr)</span>
+<!--                                                    <span th:text="${params[0]}"></span>-->
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">메일 제목</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input type="text" class="form-control" value="">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">메일 내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">첨부 파일</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="formFile">
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary">발송</button>
+                                        <a href="/resume/list" class="btn btn-outline-dark">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>

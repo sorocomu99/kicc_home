@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">채용공고 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">채용 구분</th>
+                                                <td>
+                                                    <select class="form-select w-auto" aria-label="" id="recruitType">
+                                                        <option value="new">신입</option>
+                                                        <option value="old">경력</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">채용 기간</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
+                                                            <input id="startDate" type="text" class="form-control w-auto" th:value="${#calendars.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                        <span class="mx-2">~</span>
+                                                        <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
+                                                            <input id="endDate" type="text" class="form-control w-auto">
+                                                            <div class="input-group-addon">
+                                                                <span data-feather="calendar"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">지원 분야</th>
+                                                <td>
+                                                    <input type="text" class="form-control" value="" id="recruitSphere">
+                                                    <p class="mt-2 mb-0">* 지원분야를 , 로 구분해서 입력해 주세요.</p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">제목</th>
+                                                <td>
+                                                    <input type="text" class="form-control" value="" id="recruitTitle">
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                    <textarea id="recruitContent" style="display: none;"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">첨부파일</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="recruitFile">
+                                                        <div class="form-check form-check-inline mb-0 ms-2">
+                                                            <input class="form-check-input" type="checkbox" id="fileDelete" value="option1">
+                                                            <label class="form-check-label" for="fileDelete">삭제</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">정렬</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <input class="form-control" type="number" id="recruitSortNo" value="" style="width:100px">
+                                                        <p class="mb-0 mt-2 ms-3">* 숫자가 낮을수록 상위 노출됩니다.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">노출여부</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="expsr_yn" id="expsr_y" value="Y">
+                                                        <label class="form-check-label" for="expsr_y">노출</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="expsr_yn" id="expsr_n" value="N">
+                                                        <label class="form-check-label" for="expsr_n">미노출</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveRecruit()">수정</button>
+                                        <a href="/recruit/list" class="btn btn-outline-primary">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 월 계산
+            function pad(n){
+                if(n < 10){
+                    return '0' + n;
+                }else{
+                    return n;
+                }
+            }
+
+            // 종료 날짜
+            $(document).ready(function() {
+                let after = new Date(new Date().setDate(new Date().getDate() + 30));
+                $('#endDate').val(after.getFullYear() + '-' + pad((after.getMonth() + 1)) + '-' + pad(after.getDate()));
+            });
+
+            // 등록 메소드로 이동
+            function saveRecruit(){
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.recruitType = $('#recruitType').val();
+                object.startDate = $('#startDate').val();
+                object.endDate = $('#endDate').val();
+                object.recruitSphere = $('#recruitSphere').val();
+                object.recruitTitle = $('#recruitTitle').val();
+
+                // 썸머노트 값 textarea에 추가
+                var summernote_value = $("#summernote").summernote('code');
+                $("#recruitContent").val(summernote_value);
+
+                object.recruitContent = $('#recruitContent').val();
+
+                object.recruitFile = $('#recruitFile').val();
+                object.fileDelete = $('#fileDelete').val();
+
+                if($('#recruitSortNo').val() == null) {
+                    $('#recruitSortNo').val(1);
+                }
+
+                object.irSortNo = $('#recruitSortNo').val();
+                object.expsr_yn = $('input[name=expsr_yn]').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/recruit/update',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+</body>
+</html>

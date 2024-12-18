@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <form action="">
+                            <div class="paper">
+                                <h2 class="h4">이력서 관리</h2>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:13%">지원공고</th>
+                                                <td>2024년 신입사원 채용</td>
+                                                <th class="bg-light" style="width:13%">지원분야</th>
+                                                <td>법인영업본부</td>
+                                                <th class="bg-light" style="width:13%">처리상태</th>
+                                                <td>
+                                                    <select class="form-select" aria-label="" id="resumeType">
+                                                        <option value="">접수</option>
+                                                        <option value="">서류합격</option>
+                                                        <option value="">1차합격</option>
+                                                        <option value="">2차합격</option>
+                                                        <option value="">최종합격</option>
+                                                        <option value="">불합격</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <!-- 경력지원 -->
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">희망근무지</th>
+                                                <td>서울</td>
+                                                <th class="bg-light" style="width:18%">입사가능일자</th>
+                                                <td>2024.02.02</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" style="width:18%">현재연봉</th>
+                                                <td>2000만원</td>
+                                                <th class="bg-light" style="width:18%">희망연봉</th>
+                                                <td>2400만원</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="d-flex">
+                                    <div class="col-auto">
+                                        <!-- 이미지 -->
+                                        <img class="me-3" src="/images/dummy/profile.jpg" alt="" style="width:180px;height:auto">
+                                    </div>
+                                    <div class="col">
+                                        <table class="table table-bordered align-middle">
+                                            <tbody>
+                                                <tr>
+                                                    <th class="bg-light">이름 (한글)</th>
+                                                    <td>김서로</td>
+                                                    <th class="bg-light">이름 (한자)</th>
+                                                    <td>金西魯</td>
+                                                  </tr>
+                                                <tr>
+                                                    <th class="bg-light">이름 (영어)</th>
+                                                    <td>Kim Soro</td>
+                                                    <th class="bg-light">성별</th>
+                                                    <td>여자</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th class="bg-light">생년월일</th>
+                                                    <td>1996.06.01</td>
+                                                    <th class="bg-light">휴대폰번호</th>
+                                                    <td>010-4567-8970</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th class="bg-light">전화번호</th>
+                                                    <td>02-134-4567</td>
+                                                    <th class="bg-light">이메일</th>
+                                                    <td>kicc2@kicc.com</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th class="bg-light">주소</th>
+                                                    <td colspan="3">서울특별시 영등포구 문래북로 8, 709~710호 (에이스NS타워)</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th class="bg-light">긴급연락처</th>
+                                                    <td colspan="3">000-0000-0000</td>
+                                                  </tr>
+                                                  <tr>
+                                                    <th class="bg-light">비밀번호</th>
+                                                    <td colspan="3">
+                                                        <div class="d-flex">
+                                                            <input class="form-control w-auto" type="password" id="resumePassword">
+                                                            <p class="text-danger mb-0 ms-2">
+                                                                *비밀번호를 변경하는 경우에만 입력하세요. <br>
+                                                                [숫자만 입력 가능하며 최대 4자리까지 입력 가능합니다.]
+                                                            </p>
+                                                        </div>
+                                                    </td>
+                                                  </tr>
+                                            </tbody>
+                                        </table>                                        
+                                    </div>
+                                </div>
+
+                                <h3 class="h5 mt-4 mb-3">개인사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:33.33333%">취미</th>
+                                                <th class="bg-light" style="width:33.33333%">특기</th>
+                                                <th class="bg-light" style="width:33.33333%">보훈대상여부</th>
+                                            </tr>
+                                            <tr>
+                                                <td>독서</td>
+                                                <td>독서</td>
+                                                <td>비대상</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <h3 class="h5 mt-5 mb-3">가족사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:25%">가족관계</th>
+                                                <th class="bg-light" style="width:25%">성명</th>
+                                                <th class="bg-light" style="width:25%">연령</th>
+                                                <th class="bg-light" style="width:25%">동거여부</th>
+                                            </tr>
+                                            <tr>
+                                                <td>부</td>
+                                                <td>김서서</td>
+                                                <td>48</td>
+                                                <td>예</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="h5 mt-5 mb-3">학력사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:20%">학교명</th>
+                                                <th class="bg-light" style="width:20%">재학기간</th>
+                                                <th class="bg-light" style="width:20%">전공</th>
+                                                <th class="bg-light" style="width:20%">소재지</th>
+                                                <th class="bg-light" style="width:20%">평균학점</th>
+                                              </tr>
+                                              <tr>
+                                                <td>서로대학교</td>
+                                                <td>2015.02~2021.02</td>
+                                                <td>경영학과</td>
+                                                <td>서울</td>
+                                                <td>4.0/4.5</td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="h5 mt-5 mb-3">경력사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:20%">회사명</th>
+                                                <th class="bg-light" style="width:20%">근무기간</th>
+                                                <th class="bg-light" style="width:20%">최종직위</th>
+                                                <th class="bg-light" style="width:20%">담당업무</th>
+                                                <th class="bg-light" style="width:20%">퇴직사유</th>
+                                              </tr>
+                                              <tr>
+                                                <td>서로</td>
+                                                <td>2015.02~2021.02</td>
+                                                <td>대리</td>
+                                                <td>품질 관리를 위한 고객사 대응</td>
+                                                <td>어학연수로 인한 퇴사</td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="h5 mt-5 mb-3">어학사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:20%">시험명</th>
+                                                <th class="bg-light" style="width:20%">취득일</th>
+                                                <th class="bg-light" style="width:20%">점수(등급)</th>
+                                                <th class="bg-light" style="width:20%">언어</th>
+                                              </tr>
+                                              <tr>
+                                                <td>HSK</td>
+                                                <td>2022.04.04</td>
+                                                <td>1급</td>
+                                                <td>중국어</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="h5 mt-5 mb-3">면허 및 자격사항</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:20%">자격증명</th>
+                                                <th class="bg-light" style="width:20%">취득일</th>
+                                                <th class="bg-light" style="width:20%">점수(등급)</th>
+                                                <th class="bg-light" style="width:20%">발행처</th>
+                                              </tr>
+                                              <tr>
+                                                <td>HSK</td>
+                                                <td>2022.04.04</td>
+                                                <td>1급</td>
+                                                <td>서로서로</td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h3 class="h5 mt-5 mb-3">수상경력</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:20%">수상내역</th>
+                                                <th class="bg-light" style="width:20%">취득일</th>
+                                                <th class="bg-light" style="width:20%">점수</th>
+                                                <th class="bg-light" style="width:20%">단체명</th>
+                                              </tr>
+                                              <tr>
+                                                <td>디자인어워드</td>
+                                                <td>2022.04.04</td>
+                                                <td>-</td>
+                                                <td>서로서로서로</td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <h3 class="h5 mt-5 mb-3">봉사활동</h3>
+                                <div class="mt-4">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" style="width:33.33333%">봉사기관</th>
+                                                <th class="bg-light" style="width:33.33333%">봉사내용</th>
+                                                <th class="bg-light" style="width:33.33333%">봉사 총 시간</th>
+                                              </tr>
+                                              <tr>
+                                                <td>지역아동센터</td>
+                                                <td>학습 지도 및 체험 프로그램 기획</td>
+                                                <td>30</td>
+                                              </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <!-- 자기소개서 -->
+                                <h3 class="h5 mt-5 mb-3">자기소개서</h3>
+                                <p class="h6 mb-3">01. 귀하의 성장과정을 기술하여 주십시오.</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                    <!-- <div>
+                                        <img src="../assets/images/logo.png" alt="">
+                                    </div> -->
+                                </div>
+                                <p class="h6 mt-4 mb-3">02. 귀하의 성격의 장단점을 기술하여 주십시오 (한글 400자 이내)</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                </div>
+                                <p class="h6 mt-4 mb-3">03. 귀하의 교내외 활동사항 및 주요경력을 기술하여 주십시오.(희망업무와 관련하여 기술하여 주십시오.) (한글 400자 이내)</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                </div>
+                                <p class="h6 mt-4 mb-3">04. 귀하의 다른사람과 구별되는 지식/재능을 기술하여 주십시오.(한글 400자 이내)</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                </div>
+                                <p class="h6 mt-4 mb-3">05. 귀하의 지원동기 및 입사 후 자기계발 계획을 기술하여 주십시오.(한글 400자 이내)</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                </div>
+                                <p class="h6 mt-4 mb-3">06. 귀하의 인생관/직업관을 기술하여 주십시오.(한글 400자 이내)</p>
+                                <div class="border p-3" style="min-height:150px">
+                                    지원자가 작성한 내용이 보여집니다.
+                                </div>
+                            </div>
+
+                            <div class="button-container">
+                                <button type="button" class="btn btn-primary" onclick="saveResume()">수정</button>
+                                <a href="/resume/list" class="btn btn-outline-dark">목록</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            // 등록 메소드로 이동
+            function saveResume(){
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.resumeType = $('#resumeType').val();
+                object.resumePassword = $('#resumePassword').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/resume/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>
