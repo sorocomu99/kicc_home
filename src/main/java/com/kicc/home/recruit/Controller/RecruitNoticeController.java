@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/recruit/notice")
 @RequiredArgsConstructor
-public class NoticeController {
+public class RecruitNoticeController {
     @Value("/recruit/notice")
     private String directory;
 
