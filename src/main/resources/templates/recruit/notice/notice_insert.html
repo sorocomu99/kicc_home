@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+<head th:replace="~{fragment/config :: head}"></head>
+<body>
+<div class="wrap">
+    <div th:replace="~{fragment/header :: header}"></div>
+        <main class="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="paper">
+                            <h2 class="h4">공지사항 관리</h2>
+                            <div class="mt-4">
+                                <form action="">
+                                    <table class="table table-bordered align-middle">
+                                        <tbody>
+                                            <tr>
+                                                <th class="bg-light" width="20%">제목</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input type="text" class="form-control" value="" id="noticeTitle">
+                                                        <div class="ms-3 mb-0 form-check form-switch">
+                                                            <input class="form-check-input" type="checkbox" role="switch" id="notice">
+                                                            <label class="form-check-label text-nowrap" for="notice">공지</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light" width="20%">내용</th>
+                                                <td>
+                                                    <!-- 에디터 -->
+                                                    <div id="summernote"></div>
+                                                    <textarea id="noticeContent" style="display: none;"></textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">첨부파일</th>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <input class="form-control w-auto" type="file" id="noticeFile">
+                                                        <div class="form-check form-check-inline mb-0 ms-2">
+                                                            <input class="form-check-input" type="checkbox" id="fileDelete" value="">
+                                                            <label class="form-check-label" for="fileDelete">삭제</label>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">노출여부</th>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input checked class="form-check-input" type="radio" name="expsr_yn" id="expsr_y" value="option1">
+                                                        <label class="form-check-label" for="expsr_y">노출</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="expsr_yn" id="expsr_n" value="option2">
+                                                        <label class="form-check-label" for="expsr_n">미노출</label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="bg-light">정렬</th>
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <input class="form-control" type="number" id="noticeSortNo" value="1" style="width:100px">
+                                                        <p class="mb-0 mt-2 ms-3">* 숫자가 낮을수록 상위 노출됩니다.</p>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="button-container">
+                                        <button type="button" class="btn btn-primary" onclick="saveNotice()">등록</button>
+                                        <a href="/recruit/notice/list" class="btn btn-outline-dark">목록</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <script>
+            function saveNotice() {
+                // 객체에 해당 값 추가
+                object = new Object();
+                object.noticeTitle = $('#noticeTitle').val();
+                object.notice = $('#notice').val();
+
+                // 썸머노트 값 textarea에 추가
+                var summernote_value = $("#summernote").summernote('code');
+                $("#downloadContent").val(summernote_value);
+
+                object.noticeContent = $('#noticeContent').val();
+                object.noticeFile = $('#noticeFile').val();
+                object.fileDelete = $('#fileDelete').val();
+                object.expsr_yn = $('input[name=expsr_yn]').val();
+
+                if($('#noticeSortNo').val() == null) {
+                    $('#noticeSortNo').val(1);
+                }
+
+                object.noticeSortNo = $('#noticeSortNo').val();
+
+                console.log(object);
+
+                // AJAX 통신
+                // $.ajax({
+                //     url: '/download/insert',
+                //     type: 'POST',
+                //     data: JSON.stringify(Object),
+                //     dataType: 'json',
+                //     success: function (data) {
+                //         console.log(data);
+                //     },
+                //     error: function (err) {
+                //         console.log(err);
+                //     }
+                // });
+            }
+        </script>
+    </div>
+    
+    <script src="/js/admin.js"></script>
+    
+</body>
+</html>
