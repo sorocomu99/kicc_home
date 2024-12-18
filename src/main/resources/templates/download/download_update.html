@@ -137,6 +137,11 @@
                 object.downloadPassword = $('#downloadPassword').val();
                 object.downloadFile = $('#downloadFile').val();
                 object.expsr_yn = $('input[name=expsr_yn]').val();
+
+                if($('#downloadSortNo').val() == null) {
+                    $('#downloadSortNo').val(1);
+                }
+
                 object.downloadSortNo = $('#downloadSortNo').val();
 
                 console.log(object);
