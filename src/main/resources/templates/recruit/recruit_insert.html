@@ -28,14 +28,14 @@
                                                 <td>
                                                     <div class="d-flex align-items-center">
                                                         <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
-                                                            <input id="startDate" type="text" class="form-control w-auto" th:value="${#calendars.format(#dates.createNow(), 'yyyy-MM-dd')}">
+                                                            <input id="startDate" type="text" class="form-control w-auto" th:value="${#temporals.format(#temporals.createNow(), 'yyyy-MM-dd')}">
                                                             <div class="input-group-addon">
                                                                 <span data-feather="calendar"></span>
                                                             </div>
                                                         </div>
                                                         <span class="mx-2">~</span>
                                                         <div class="input-group w-auto flex-nowrap date" data-provide="datepicker">
-                                                            <input id="endDate" type="text" class="form-control w-auto">
+                                                            <input id="endDate" type="text" class="form-control w-auto" th:value="${#temporals.format(#temporals.createNow().plus(30, T(java.time.temporal.ChronoUnit).DAYS), 'yyyy-MM-dd')}">
                                                             <div class="input-group-addon">
                                                                 <span data-feather="calendar"></span>
                                                             </div>
@@ -122,11 +122,11 @@
             }
 
             // 종료 날짜
-            $(document).ready(function() {
+            /*$(document).ready(function() {
                 let after = new Date(new Date().setDate(new Date().getDate() + 30));
                 $('#endDate').val(after.getFullYear() + '-' + pad((after.getMonth() + 1)) + '-' + pad(after.getDate()));
             });
-
+*/
             // 등록 메소드로 이동
             function saveRecruit(){
                 // 객체에 해당 값 추가
